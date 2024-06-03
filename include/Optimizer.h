@@ -43,7 +43,7 @@ namespace ORB_SLAM3
 
 class LoopClosing;
 
-class Optimizer
+ORB_SLAM3_API class Optimizer
 {
 public:
 

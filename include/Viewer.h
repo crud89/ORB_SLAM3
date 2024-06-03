@@ -37,7 +37,7 @@ class MapDrawer;
 class System;
 class Settings;
 
-class Viewer
+ORB_SLAM3_API class Viewer
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW

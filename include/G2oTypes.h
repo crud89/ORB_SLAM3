@@ -71,7 +71,7 @@ Eigen::Matrix<T,3,3> NormalizeRotation(const Eigen::Matrix<T,3,3> &R) {
 }
 
 
-class ImuCamPose
+ORB_SLAM3_API class ImuCamPose
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -109,7 +109,7 @@ public:
     int its;
 };
 
-class InvDepthPoint
+ORB_SLAM3_API class InvDepthPoint
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -127,7 +127,7 @@ public:
 };
 
 // Optimizable parameters are IMU pose
-class VertexPose : public g2o::BaseVertex<6,ImuCamPose>
+ORB_SLAM3_API class VertexPose : public g2o::BaseVertex<6,ImuCamPose>
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -152,7 +152,7 @@ public:
     }
 };
 
-class VertexPose4DoF : public g2o::BaseVertex<4,ImuCamPose>
+ORB_SLAM3_API class VertexPose4DoF : public g2o::BaseVertex<4,ImuCamPose>
 {
     // Translation and yaw are the only optimizable variables
 public:
@@ -188,7 +188,7 @@ public:
     }
 };
 
-class VertexVelocity : public g2o::BaseVertex<3,Eigen::Vector3d>
+ORB_SLAM3_API class VertexVelocity : public g2o::BaseVertex<3,Eigen::Vector3d>
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -209,7 +209,7 @@ public:
     }
 };
 
-class VertexGyroBias : public g2o::BaseVertex<3,Eigen::Vector3d>
+ORB_SLAM3_API class VertexGyroBias : public g2o::BaseVertex<3,Eigen::Vector3d>
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -231,7 +231,7 @@ public:
 };
 
 
-class VertexAccBias : public g2o::BaseVertex<3,Eigen::Vector3d>
+ORB_SLAM3_API class VertexAccBias : public g2o::BaseVertex<3,Eigen::Vector3d>
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -254,7 +254,7 @@ public:
 
 
 // Gravity direction vertex
-class GDirection
+ORB_SLAM3_API class GDirection
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -271,7 +271,7 @@ public:
     int its;
 };
 
-class VertexGDir : public g2o::BaseVertex<2,GDirection>
+ORB_SLAM3_API class VertexGDir : public g2o::BaseVertex<2,GDirection>
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -293,7 +293,7 @@ public:
 };
 
 // scale vertex
-class VertexScale : public g2o::BaseVertex<1,double>
+ORB_SLAM3_API class VertexScale : public g2o::BaseVertex<1,double>
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -318,7 +318,7 @@ public:
 
 
 // Inverse depth point (just one parameter, inverse depth at the host frame)
-class VertexInvDepth : public g2o::BaseVertex<1,InvDepthPoint>
+ORB_SLAM3_API class VertexInvDepth : public g2o::BaseVertex<1,InvDepthPoint>
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -339,7 +339,7 @@ public:
     }
 };
 
-class EdgeMono : public g2o::BaseBinaryEdge<2,Eigen::Vector2d,g2o::VertexSBAPointXYZ,VertexPose>
+ORB_SLAM3_API class EdgeMono : public g2o::BaseBinaryEdge<2,Eigen::Vector2d,g2o::VertexSBAPointXYZ,VertexPose>
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -387,7 +387,7 @@ public:
     const int cam_idx;
 };
 
-class EdgeMonoOnlyPose : public g2o::BaseUnaryEdge<2,Eigen::Vector2d,VertexPose>
+ORB_SLAM3_API class EdgeMonoOnlyPose : public g2o::BaseUnaryEdge<2,Eigen::Vector2d,VertexPose>
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -422,7 +422,7 @@ public:
     const int cam_idx;
 };
 
-class EdgeStereo : public g2o::BaseBinaryEdge<3,Eigen::Vector3d,g2o::VertexSBAPointXYZ,VertexPose>
+ORB_SLAM3_API class EdgeStereo : public g2o::BaseBinaryEdge<3,Eigen::Vector3d,g2o::VertexSBAPointXYZ,VertexPose>
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -463,7 +463,7 @@ public:
 };
 
 
-class EdgeStereoOnlyPose : public g2o::BaseUnaryEdge<3,Eigen::Vector3d,VertexPose>
+ORB_SLAM3_API class EdgeStereoOnlyPose : public g2o::BaseUnaryEdge<3,Eigen::Vector3d,VertexPose>
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -492,7 +492,7 @@ public:
     const int cam_idx;
 };
 
-class EdgeInertial : public g2o::BaseMultiEdge<9,Vector9d>
+ORB_SLAM3_API class EdgeInertial : public g2o::BaseMultiEdge<9,Vector9d>
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -545,7 +545,7 @@ public:
 
 
 // Edge inertial whre gravity is included as optimizable variable and it is not supposed to be pointing in -z axis, as well as scale
-class EdgeInertialGS : public g2o::BaseMultiEdge<9,Vector9d>
+ORB_SLAM3_API class EdgeInertialGS : public g2o::BaseMultiEdge<9,Vector9d>
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -632,7 +632,7 @@ public:
 
 
 
-class EdgeGyroRW : public g2o::BaseBinaryEdge<3,Eigen::Vector3d,VertexGyroBias,VertexGyroBias>
+ORB_SLAM3_API class EdgeGyroRW : public g2o::BaseBinaryEdge<3,Eigen::Vector3d,VertexGyroBias,VertexGyroBias>
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -668,7 +668,7 @@ public:
 };
 
 
-class EdgeAccRW : public g2o::BaseBinaryEdge<3,Eigen::Vector3d,VertexAccBias,VertexAccBias>
+ORB_SLAM3_API class EdgeAccRW : public g2o::BaseBinaryEdge<3,Eigen::Vector3d,VertexAccBias,VertexAccBias>
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -703,7 +703,7 @@ public:
     }
 };
 
-class ConstraintPoseImu
+ORB_SLAM3_API class ConstraintPoseImu
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -729,7 +729,7 @@ public:
     Matrix15d H;
 };
 
-class EdgePriorPoseImu : public g2o::BaseMultiEdge<15,Vector15d>
+ORB_SLAM3_API class EdgePriorPoseImu : public g2o::BaseMultiEdge<15,Vector15d>
 {
 public:
         EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -765,7 +765,7 @@ public:
 };
 
 // Priors for biases
-class EdgePriorAcc : public g2o::BaseUnaryEdge<3,Eigen::Vector3d,VertexAccBias>
+ORB_SLAM3_API class EdgePriorAcc : public g2o::BaseUnaryEdge<3,Eigen::Vector3d,VertexAccBias>
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -789,7 +789,7 @@ public:
     const Eigen::Vector3d bprior;
 };
 
-class EdgePriorGyro : public g2o::BaseUnaryEdge<3,Eigen::Vector3d,VertexGyroBias>
+ORB_SLAM3_API class EdgePriorGyro : public g2o::BaseUnaryEdge<3,Eigen::Vector3d,VertexGyroBias>
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -814,7 +814,7 @@ public:
 };
 
 
-class Edge4DoF : public g2o::BaseBinaryEdge<6,Vector6d,VertexPose4DoF,VertexPose4DoF>
+ORB_SLAM3_API class Edge4DoF : public g2o::BaseBinaryEdge<6,Vector6d,VertexPose4DoF,VertexPose4DoF>
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW

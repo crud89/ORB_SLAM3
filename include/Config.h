@@ -19,36 +19,51 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#include <unistd.h>
+#include "unistd.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
 
 
+#ifdef BUILD_AS_SHARED_OBJECT
+//#ifdef WIN32
+//#ifdef ORB_SLAM3_EXPORTS
+//#define ORB_SLAM3_API __declspec(dllexport)
+//#else
+//#define ORB_SLAM3_API __declspec(dllimport)
+//#endif //ORB_SLAM3_EXPORTS
+//#else
+//#define ORB_SLAM3_API
+//#endif // WIN32
+#else
+#define ORB_SLAM3_API
+#endif
+
+
 namespace ORB_SLAM3
 {
 
-class ViewerConfig
+ORB_SLAM3_API class ViewerConfig
 {
 
 };
 
-class CameraConfig
+ORB_SLAM3_API class CameraConfig
 {
 
 };
 
-class ORBExtractorConfig
+ORB_SLAM3_API class ORBExtractorConfig
 {
 
 };
 
-class IMUConfig
+ORB_SLAM3_API class IMUConfig
 {
 
 };
 
-class ConfigParser
+ORB_SLAM3_API class ConfigParser
 {
 public:
     bool ParseConfigFile(std::string &strConfigFile);

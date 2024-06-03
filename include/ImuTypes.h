@@ -33,6 +33,7 @@
 
 #include <boost/serialization/serialization.hpp>
 #include <boost/serialization/vector.hpp>
+#include "Config.h"
 
 namespace ORB_SLAM3
 {
@@ -43,7 +44,7 @@ namespace IMU
 const float GRAVITY_VALUE=9.81;
 
 //IMU measurement (gyro, accelerometer and timestamp)
-class Point
+ORB_SLAM3_API class Point
 {
 public:
     Point(const float &acc_x, const float &acc_y, const float &acc_z,
@@ -59,7 +60,7 @@ public:
 };
 
 //IMU biases (gyro and accelerometer)
-class Bias
+ORB_SLAM3_API class Bias
 {
     friend class boost::serialization::access;
     template<class Archive>
@@ -89,7 +90,7 @@ public:
 };
 
 //IMU calibration (Tbc, Tcb, noise)
-class Calib
+ORB_SLAM3_API class Calib
 {
     friend class boost::serialization::access;
     template<class Archive>
@@ -126,7 +127,7 @@ public:
 };
 
 //Integration of 1 gyro measurement
-class IntegratedRotation
+ORB_SLAM3_API class IntegratedRotation
 {
 public:
     IntegratedRotation(){}
@@ -140,7 +141,7 @@ public:
 };
 
 //Preintegration of Imu Measurements
-class Preintegrated
+ORB_SLAM3_API class Preintegrated
 {
     friend class boost::serialization::access;
     template<class Archive>

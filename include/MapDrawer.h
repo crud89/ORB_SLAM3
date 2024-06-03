@@ -33,7 +33,7 @@ namespace ORB_SLAM3
 
 class Settings;
 
-class MapDrawer
+ORB_SLAM3_API class MapDrawer
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW

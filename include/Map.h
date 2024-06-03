@@ -38,7 +38,7 @@ class KeyFrame;
 class Atlas;
 class KeyFrameDatabase;
 
-class Map
+ORB_SLAM3_API class Map
 {
     friend class boost::serialization::access;
 

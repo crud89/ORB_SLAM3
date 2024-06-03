@@ -25,10 +25,11 @@
 
 #include <Eigen/Geometry>
 #include <include/CameraModels/GeometricCamera.h>
+#include "Config.h"
 
 
 namespace ORB_SLAM3 {
-class  EdgeSE3ProjectXYZOnlyPose: public  g2o::BaseUnaryEdge<2, Eigen::Vector2d, g2o::VertexSE3Expmap>{
+ORB_SLAM3_API class  EdgeSE3ProjectXYZOnlyPose: public  g2o::BaseUnaryEdge<2, Eigen::Vector2d, g2o::VertexSE3Expmap>{
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
@@ -56,7 +57,7 @@ public:
     GeometricCamera* pCamera;
 };
 
-class  EdgeSE3ProjectXYZOnlyPoseToBody: public  g2o::BaseUnaryEdge<2, Eigen::Vector2d, g2o::VertexSE3Expmap>{
+ORB_SLAM3_API class  EdgeSE3ProjectXYZOnlyPoseToBody: public  g2o::BaseUnaryEdge<2, Eigen::Vector2d, g2o::VertexSE3Expmap>{
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
@@ -86,7 +87,7 @@ public:
     g2o::SE3Quat mTrl;
 };
 
-class  EdgeSE3ProjectXYZ: public  g2o::BaseBinaryEdge<2, Eigen::Vector2d, g2o::VertexSBAPointXYZ, g2o::VertexSE3Expmap>{
+ORB_SLAM3_API class  EdgeSE3ProjectXYZ: public  g2o::BaseBinaryEdge<2, Eigen::Vector2d, g2o::VertexSBAPointXYZ, g2o::VertexSE3Expmap>{
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
@@ -114,7 +115,7 @@ public:
     GeometricCamera* pCamera;
 };
 
-class  EdgeSE3ProjectXYZToBody: public  g2o::BaseBinaryEdge<2, Eigen::Vector2d, g2o::VertexSBAPointXYZ, g2o::VertexSE3Expmap>{
+ORB_SLAM3_API class  EdgeSE3ProjectXYZToBody: public  g2o::BaseBinaryEdge<2, Eigen::Vector2d, g2o::VertexSBAPointXYZ, g2o::VertexSE3Expmap>{
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
@@ -143,7 +144,7 @@ public:
     g2o::SE3Quat mTrl;
 };
 
-class VertexSim3Expmap : public g2o::BaseVertex<7, g2o::Sim3>
+ORB_SLAM3_API class VertexSim3Expmap : public g2o::BaseVertex<7, g2o::Sim3>
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -172,7 +173,7 @@ public:
 };
 
 
-class EdgeSim3ProjectXYZ : public  g2o::BaseBinaryEdge<2, Eigen::Vector2d, g2o::VertexSBAPointXYZ, ORB_SLAM3::VertexSim3Expmap>
+ORB_SLAM3_API class EdgeSim3ProjectXYZ : public  g2o::BaseBinaryEdge<2, Eigen::Vector2d, g2o::VertexSBAPointXYZ, ORB_SLAM3::VertexSim3Expmap>
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -193,7 +194,7 @@ public:
 
 };
 
-class EdgeInverseSim3ProjectXYZ : public  g2o::BaseBinaryEdge<2, Eigen::Vector2d,  g2o::VertexSBAPointXYZ, VertexSim3Expmap>
+ORB_SLAM3_API class EdgeInverseSim3ProjectXYZ : public  g2o::BaseBinaryEdge<2, Eigen::Vector2d,  g2o::VertexSBAPointXYZ, VertexSim3Expmap>
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW

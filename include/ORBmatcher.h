@@ -33,7 +33,7 @@
 namespace ORB_SLAM3
 {
 
-    class ORBmatcher
+    ORB_SLAM3_API class ORBmatcher
     {
     public:
 

@@ -37,7 +37,7 @@ namespace ORB_SLAM3
 class Tracking;
 class Viewer;
 
-class FrameDrawer
+ORB_SLAM3_API class FrameDrawer
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW

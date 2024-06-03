@@ -22,12 +22,13 @@
 #include <vector>
 #include <list>
 #include <opencv2/opencv.hpp>
+#include "Config.h"
 
 
 namespace ORB_SLAM3
 {
 
-class ExtractorNode
+ORB_SLAM3_API class ExtractorNode
 {
 public:
     ExtractorNode():bNoMore(false){}
@@ -40,7 +41,7 @@ public:
     bool bNoMore;
 };
 
-class ORBextractor
+ORB_SLAM3_API class ORBextractor
 {
 public:
     

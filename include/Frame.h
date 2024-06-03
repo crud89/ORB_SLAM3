@@ -50,7 +50,7 @@ class ConstraintPoseImu;
 class GeometricCamera;
 class ORBextractor;
 
-class Frame
+ORB_SLAM3_API class Frame
 {
 public:
     Frame();

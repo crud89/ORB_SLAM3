@@ -72,7 +72,7 @@ namespace g2o {
     static G2OBatchStatistics* globalStats() {return _globalStats;}
     static void setGlobalStats(G2OBatchStatistics* b);
     protected:
-    static G2OBatchStatistics* _globalStats;
+        inline static G2OBatchStatistics* _globalStats = 0;
   };
 
    std::ostream& operator<<(std::ostream&, const G2OBatchStatistics&);

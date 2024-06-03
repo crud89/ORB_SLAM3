@@ -28,11 +28,12 @@
 
 #include "Thirdparty/Sophus/sophus/geometry.hpp"
 #include "Thirdparty/Sophus/sophus/sim3.hpp"
+#include "Config.h"
 
 namespace ORB_SLAM3
 {
 
-class Converter
+ORB_SLAM3_API class Converter
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW

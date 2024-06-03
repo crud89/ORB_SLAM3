@@ -49,7 +49,7 @@ class KeyFrameDatabase;
 
 class GeometricCamera;
 
-class KeyFrame
+ORB_SLAM3_API class KeyFrame
 {
     friend class boost::serialization::access;
 

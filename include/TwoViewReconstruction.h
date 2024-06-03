@@ -24,11 +24,12 @@
 #include <unordered_set>
 
 #include <sophus/se3.hpp>
+#include "Config.h"
 
 namespace ORB_SLAM3
 {
 
-    class TwoViewReconstruction
+    ORB_SLAM3_API class TwoViewReconstruction
     {
         typedef std::pair<int,int> Match;
 

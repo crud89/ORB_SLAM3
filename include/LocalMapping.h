@@ -38,7 +38,7 @@ class Tracking;
 class LoopClosing;
 class Atlas;
 
-class LocalMapping
+ORB_SLAM3_API class LocalMapping
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW

@@ -20,8 +20,7 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
-
-#include <unistd.h>
+#include "unistd.h"
 #include<stdio.h>
 #include<stdlib.h>
 #include<string>
@@ -39,12 +38,13 @@
 #include "Viewer.h"
 #include "ImuTypes.h"
 #include "Settings.h"
+#include "Config.h"
 
 
 namespace ORB_SLAM3
 {
 
-class Verbose
+ORB_SLAM3_API class Verbose
 {
 public:
     enum eLevel
@@ -80,7 +80,7 @@ class LocalMapping;
 class LoopClosing;
 class Settings;
 
-class System
+ORB_SLAM3_API class System
 {
 public:
     // Input sensor

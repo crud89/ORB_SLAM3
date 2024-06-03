@@ -41,7 +41,7 @@ class KeyFrame;
 class Map;
 class Frame;
 
-class MapPoint
+ORB_SLAM3_API class MapPoint
 {
 
     friend class boost::serialization::access;

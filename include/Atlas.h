@@ -46,7 +46,7 @@ class Pinhole;
 //BOOST_CLASS_EXPORT_GUID(Pinhole, "Pinhole")
 //BOOST_CLASS_EXPORT_GUID(KannalaBrandt8, "KannalaBrandt8")
 
-class Atlas
+ORB_SLAM3_API class Atlas
 {
     friend class boost::serialization::access;
 

@@ -42,7 +42,7 @@ class KeyFrameDatabase;
 class Map;
 
 
-class LoopClosing
+ORB_SLAM3_API class LoopClosing
 {
 public:
 
@@ -223,7 +223,7 @@ protected:
     bool mbFixScale;
 
 
-    bool mnFullBAIdx;
+    int mnFullBAIdx;
 
 
 

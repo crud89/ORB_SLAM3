@@ -26,7 +26,7 @@
 #include "TwoViewReconstruction.h"
 
 namespace ORB_SLAM3 {
-    class Pinhole : public GeometricCamera {
+    ORB_SLAM3_API class Pinhole : public GeometricCamera {
 
     friend class boost::serialization::access;
 

@@ -40,7 +40,7 @@
 #include "GeometricTools.h"
 
 namespace ORB_SLAM3 {
-    class GeometricCamera {
+    ORB_SLAM3_API class GeometricCamera {
 
         friend class boost::serialization::access;
 

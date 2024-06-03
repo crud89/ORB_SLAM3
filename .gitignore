@@ -91,3 +91,14 @@ my_settings.txt
 borrar/*
 
 */ExecMean.txt
+
+!/Thirdparty/vcpkg/
+!/Thirdparty/vcpkg/*
+!/Thirdparty/vcpkg/*.*
+
+.vs/
+*.dll
+*.exe
+*.pdb
+*.ilk
+*.obj

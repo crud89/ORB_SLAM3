@@ -1,0 +1,18 @@
+{
+  "name": "orbslam3",
+  "version-string": "1.0",
+  "maintainers": [ "" ],
+  "description": "ORB-SLAM3: An Accurate Open-Source Library for Visual, Visual-Inertial and Multi-Map SLAM.",
+  "homepage": "https://github.com/UZ-SLAMLab/ORB_SLAM3",
+  "documentation": "https://github.com/UZ-SLAMLab/ORB_SLAM3",
+  "license": "GPL-3.0",
+  "dependencies": [
+    "eigen3",
+    "pangolin",
+    "opencv",
+    "realsense2",
+    "opencv",
+    "boost-serialization",
+    "openssl"
+  ]
+}

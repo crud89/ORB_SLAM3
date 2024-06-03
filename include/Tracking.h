@@ -53,7 +53,7 @@ class LoopClosing;
 class System;
 class Settings;
 
-class Tracking
+ORB_SLAM3_API class Tracking
 {  
 
 public:

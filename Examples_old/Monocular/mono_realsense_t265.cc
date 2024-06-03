@@ -33,14 +33,6 @@
 
 using namespace std;
 
-bool b_continue_session;
-
-void exit_loop_handler(int s){
-   cout << "Finishing session" << endl;
-   b_continue_session = false;
-
-}
-
 int main(int argc, char **argv)
 {
 
@@ -58,16 +50,6 @@ int main(int argc, char **argv)
         file_name = string(argv[argc-1]);
         bFileName = true;
     }
-
-    struct sigaction sigIntHandler;
-
-    sigIntHandler.sa_handler = exit_loop_handler;
-    sigemptyset(&sigIntHandler.sa_mask);
-    sigIntHandler.sa_flags = 0;
-
-    sigaction(SIGINT, &sigIntHandler, NULL);
-    b_continue_session = true;
-
 
     // Declare RealSense pipeline, encapsulating the actual device and sensors
     rs2::pipeline pipe;
@@ -100,7 +82,7 @@ int main(int argc, char **argv)
     double t_resize = 0.f;
     double t_track = 0.f;
 
-    while(b_continue_session)
+    while(true)
     {
         //cv::Ptr<cv::CLAHE> clahe = cv::createCLAHE(3.0, cv::Size(8, 8));
         // Get the stream from the device
@@ -116,21 +98,14 @@ int main(int argc, char **argv)
             if(imageScale != 1.f)
             {
 #ifdef REGISTER_TIMES
-    #ifdef COMPILEDWITHC11
                 std::chrono::steady_clock::time_point t_Start_Resize = std::chrono::steady_clock::now();
-    #else
-                std::chrono::monotonic_clock::time_point t_Start_Resize = std::chrono::monotonic_clock::now();
-    #endif
 #endif
                 int width = imCV.cols * imageScale;
                 int height = imCV.rows * imageScale;
                 cv::resize(imCV, imCV, cv::Size(width, height));
 #ifdef REGISTER_TIMES
-    #ifdef COMPILEDWITHC11
                 std::chrono::steady_clock::time_point t_End_Resize = std::chrono::steady_clock::now();
-    #else
-                std::chrono::monotonic_clock::time_point t_End_Resize = std::chrono::monotonic_clock::now();
-    #endif
+
                 t_resize = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(t_End_Resize - t_Start_Resize).count();
                 SLAM.InsertResizeTime(t_resize);
 #endif
@@ -141,27 +116,23 @@ int main(int argc, char **argv)
             //clahe->apply(imRight,imRight);
 
 #ifdef REGISTER_TIMES
-  #ifdef COMPILEDWITHC11
             std::chrono::steady_clock::time_point t1 = std::chrono::steady_clock::now();
-  #else
-            std::chrono::monotonic_clock::time_point t1 = std::chrono::monotonic_clock::now();
-  #endif
 #endif
 
             // Pass the image to the SLAM system
             SLAM.TrackMonocular(imCV, timestamp_ms);
 
 #ifdef REGISTER_TIMES
-  #ifdef COMPILEDWITHC11
             std::chrono::steady_clock::time_point t2 = std::chrono::steady_clock::now();
-  #else
-            std::chrono::monotonic_clock::time_point t2 = std::chrono::monotonic_clock::now();
-  #endif
+
             t_track = t_resize + std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(t2 - t1).count();
             SLAM.InsertTrackTime(t_track);
 #endif
 
         }
+
+        if (cv::waitKey(10) == 27) // ESC
+            break;
     }
 
     pipe.stop();

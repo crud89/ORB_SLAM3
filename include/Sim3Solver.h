@@ -30,7 +30,7 @@
 namespace ORB_SLAM3
 {
 
-class Sim3Solver
+ORB_SLAM3_API class Sim3Solver
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW

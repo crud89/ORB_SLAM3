@@ -36,14 +36,6 @@
 
 using namespace std;
 
-bool b_continue_session;
-
-void exit_loop_handler(int s){
-    cout << "Finishing session" << endl;
-    b_continue_session = false;
-
-}
-
 rs2_vector interpolateMeasure(const double target_time,
                               const rs2_vector current_data, const double current_time,
                               const rs2_vector prev_data, const double prev_time);
@@ -104,15 +96,6 @@ int main(int argc, char **argv) {
     if (argc == 4) {
         file_name = string(argv[argc - 1]);
     }
-
-    struct sigaction sigIntHandler;
-
-    sigIntHandler.sa_handler = exit_loop_handler;
-    sigemptyset(&sigIntHandler.sa_mask);
-    sigIntHandler.sa_flags = 0;
-
-    sigaction(SIGINT, &sigIntHandler, NULL);
-    b_continue_session = true;
 
     double offset = 0; // ms
 
@@ -259,11 +242,7 @@ int main(int argc, char **argv) {
             if(!image_ready)
                 cond_image_rec.wait(lk);
 
-#ifdef COMPILEDWITHC11
             std::chrono::steady_clock::time_point time_Start_Process = std::chrono::steady_clock::now();
-#else
-            std::chrono::monotonic_clock::time_point time_Start_Process = std::chrono::monotonic_clock::now();
-#endif
 
             if(count_im_buffer>1)
                 cout << count_im_buffer -1 << " dropped frs\n";
@@ -279,11 +258,7 @@ int main(int argc, char **argv) {
         if(imageScale != 1.f)
         {
 #ifdef REGISTER_TIMES
-    #ifdef COMPILEDWITHC11
             std::chrono::steady_clock::time_point t_Start_Resize = std::chrono::steady_clock::now();
-    #else
-            std::chrono::monotonic_clock::time_point t_Start_Resize = std::chrono::monotonic_clock::now();
-    #endif
 #endif
             int width = im.cols * imageScale;
             int height = im.rows * imageScale;
@@ -291,31 +266,21 @@ int main(int argc, char **argv) {
             cv::resize(imRight, imRight, cv::Size(width, height));
 
 #ifdef REGISTER_TIMES
-    #ifdef COMPILEDWITHC11
             std::chrono::steady_clock::time_point t_End_Resize = std::chrono::steady_clock::now();
-    #else
-            std::chrono::monotonic_clock::time_point t_End_Resize = std::chrono::monotonic_clock::now();
-    #endif
+
             t_resize = std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(t_End_Resize - t_Start_Resize).count();
             SLAM.InsertResizeTime(t_resize);
 #endif
         }
 
 #ifdef REGISTER_TIMES
-    #ifdef COMPILEDWITHC11
         std::chrono::steady_clock::time_point t_Start_Track = std::chrono::steady_clock::now();
-    #else
-        std::chrono::monotonic_clock::time_point t_Start_Track = std::chrono::monotonic_clock::now();
-    #endif
 #endif
         // Stereo images are already rectified.
         SLAM.TrackStereo(im, imRight, timestamp);
 #ifdef REGISTER_TIMES
-    #ifdef COMPILEDWITHC11
         std::chrono::steady_clock::time_point t_End_Track = std::chrono::steady_clock::now();
-    #else
-        std::chrono::monotonic_clock::time_point t_End_Track = std::chrono::monotonic_clock::now();
-    #endif
+
         t_track = t_resize + std::chrono::duration_cast<std::chrono::duration<double,std::milli> >(t_End_Track - t_Start_Track).count();
         SLAM.InsertTrackTime(t_track);
 #endif

@@ -25,10 +25,11 @@
 
 #include "CameraModels/GeometricCamera.h"
 
-#include <unistd.h>
+#include "unistd.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
+#include "Config.h"
 
 namespace ORB_SLAM3 {
 
@@ -36,7 +37,7 @@ namespace ORB_SLAM3 {
 
     //TODO: change to double instead of float
 
-    class Settings {
+    ORB_SLAM3_API class Settings {
     public:
         /*
          * Enum for the different camera types implemented
